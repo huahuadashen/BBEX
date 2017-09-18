@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_exchange"
+        android:icon="@drawable/main_tab_icon_exchange_press"
+        android:title="@string/title_exchange"/>
+
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/main_tab_icon_me_normal"
+        android:title="@string/title_me"/>
+
+</menu>

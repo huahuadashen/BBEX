@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/user_base_info"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2b3749"
+    >
+
+
+    <com.jfz.imageloader.JfzImageView
+        android:id="@+id/user_header_image"
+        android:layout_width="63.3dp"
+        android:layout_height="63.3dp"
+        android:layout_marginLeft="6.6dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/user_portrait"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6.6dp"
+        android:layout_toRightOf="@id/user_header_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="17.3sp"
+            android:text="@string/login_then_have_nickname"/>
+
+        <TextView
+            android:id="@+id/user_uid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#8d98a7"
+            android:textSize="17.3sp"
+            android:text="@string/login_then_have_nickname"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/user_more_info"
+        android:layout_width="19.3dp"
+        android:layout_height="19.3dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12.3dp"
+        android:background="@mipmap/right_arrow_icon"/>
+
+    <TextView
+        android:id="@+id/user_login_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/login_state"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/user_more_info"
+        android:textColor="#8d98a7"
+        android:textSize="17.3sp"/>
+</RelativeLayout>

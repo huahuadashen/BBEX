@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical">
+
+    <View
+        android:id="@+id/user_bottom_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16.7dp"/>
+
+    <TextView
+        android:id="@+id/user_bottom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6.6dp"
+        android:layout_toRightOf="@id/user_bottom_icon"
+        android:gravity="center_vertical"
+        android:textColor="#3c415f"
+        android:textSize="14.6dp"
+        tools:text="关于BBEX"/>
+
+    <View
+        android:id="@+id/user_little_point"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/user_bottom_title"
+        android:background="@drawable/little_red_point"/>
+
+
+    <View
+        android:id="@+id/user_bottom_arrow"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/right_arrow_icon"/>
+
+    <TextView
+        android:id="@+id/user_bottom_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/user_bottom_arrow"
+        android:textColor="#ff8f9cb3"
+        android:textSize="12.7sp"
+        tools:text="v1.0.1"/>
+</RelativeLayout>
