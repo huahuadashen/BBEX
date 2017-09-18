@@ -11,7 +11,7 @@ public class UserModel {
     /**
      * code : 0
      * msg : ok
-     * data : {"id":100000,"name":"中本聪","email":"zbc@bbex.io","country_code":"86","phone":"17620358888","created_at":"2017-09-17 09:30:50","updated_at":"2017-09-17 09:30:50"}
+     * data : {"name":"中本聪","email":"zbc@bbex.io","country_code":"86","phone":"17620358888","created_at":"2017-09-17 09:30:50","updated_at":"2017-09-17 09:30:50","uid":100000}
      */
 
     @SerializedName("code")
@@ -23,17 +23,15 @@ public class UserModel {
 
     public static class DataBean {
         /**
-         * id : 100000
          * name : 中本聪
          * email : zbc@bbex.io
          * country_code : 86
          * phone : 17620358888
          * created_at : 2017-09-17 09:30:50
          * updated_at : 2017-09-17 09:30:50
+         * uid : 100000
          */
 
-        @SerializedName("id")
-        public int id;
         @SerializedName("name")
         public String name;
         @SerializedName("email")
@@ -46,5 +44,7 @@ public class UserModel {
         public String createdAt;
         @SerializedName("updated_at")
         public String updatedAt;
+        @SerializedName("uid")
+        public int uid;
     }
 }

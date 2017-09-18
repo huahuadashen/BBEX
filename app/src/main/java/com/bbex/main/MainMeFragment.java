@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bbex.R;
 import com.bbex.R2;
 import com.bbex.base.BaseFragment;
-import com.bbex.net.api.BBEXServerApi;
 import com.bbex.net.model.UserModel;
 import com.bbex.net.retrofit.RetrofitUtils;
 import com.jfz.imageloader.ImageLoaderOptions;
@@ -19,12 +19,10 @@ import com.jfz.imageloader.JfzImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.ResourceObserver;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * author : zhangxuebing
@@ -74,25 +72,23 @@ public class MainMeFragment extends BaseFragment{
             mUserLoginState.setText(R.string.login);
         }
 
-        BBEXServerApi weixinApi;
-        weixinApi = new Retrofit.Builder()
-                .baseUrl("https://bbex.io")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-                .create(BBEXServerApi.class);
 
-
+        ARouter.getInstance().build("/test/activity").navigation();
 
         RetrofitUtils.getCommonServer()
                 .getUserInfo()
 //                .compose(new DefaultTransformer<UserModel>())
                 .subscribeOn(Schedulers.io())
-//                .observeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResourceObserver<UserModel>() {
                     @Override
                     public void onNext(@NonNull UserModel userModel) {
                         Log.i("huahua","userModel =" + userModel.data.name);
+
+                        mUserName.setText(userModel.data.name);
+                        mUserUid.setText("UID:" + userModel.data.uid);
+                        mUserUid.setVisibility(View.VISIBLE);
+                        mUserLoginState.setText(R.string.login_state);
                     }
 
                     @Override

@@ -2,6 +2,7 @@ package com.bbex.base;
 
 import android.app.Application;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jfz.context.BaseApp;
 
 /**
@@ -14,5 +15,6 @@ public class BBEXApplication extends Application{
     public void onCreate() {
         super.onCreate();
         BaseApp.instance = this;
+        ARouter.init(this);
     }
 }
