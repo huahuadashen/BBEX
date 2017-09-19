@@ -42,5 +42,6 @@ public class WebActivity extends Activity {
         mWebView = (WebView) findViewById(R.id.webview);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(WebUrl);
+
     }
 }

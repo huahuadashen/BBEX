@@ -15,6 +15,7 @@ import com.bbex.base.BaseFragment;
 import com.bbex.config.RouterConstant;
 import com.bbex.net.model.UserModel;
 import com.bbex.net.retrofit.RetrofitUtils;
+import com.bbex.storage.SpUtil;
 import com.bbex.webview.WebActivity;
 import com.jfz.imageloader.ImageLoaderOptions;
 import com.jfz.imageloader.JfzImageView;
@@ -64,17 +65,23 @@ public class MainMeFragment extends BaseFragment{
                 .setImageType(ImageLoaderOptions.IMAGE_CIRCLE)
                 .build());
 
-        if(false){
-            mUserName.setText("花花大神");
-            mUserUid.setText("UID:" + 10001);
+        UserModel userModel = SpUtil.get(getActivity(), UserModel.SP_USER, UserModel.class);
+        if(userModel !=null){
+            mUserName.setText(userModel.data.name);
+            mUserUid.setText("UID:" + userModel.data.uid);
             mUserUid.setVisibility(View.VISIBLE);
             mUserLoginState.setText(R.string.login_state);
         }else{
             mUserName.setText(R.string.login_then_have_nickname);
             mUserUid.setVisibility(View.GONE);
             mUserLoginState.setText(R.string.login);
+            getUserInfo();
         }
 
+        return mRootView;
+    }
+
+    private void getUserInfo(){
         RetrofitUtils.getCommonServer()
                 .getUserInfo()
 //                .compose(new DefaultTransformer<UserModel>())
@@ -89,6 +96,8 @@ public class MainMeFragment extends BaseFragment{
                         mUserUid.setText("UID:" + userModel.data.uid);
                         mUserUid.setVisibility(View.VISIBLE);
                         mUserLoginState.setText(R.string.login_state);
+
+                        SpUtil.put(getActivity(),UserModel.SP_USER, userModel);
                     }
 
                     @Override
@@ -101,13 +110,12 @@ public class MainMeFragment extends BaseFragment{
 
                     }
                 });
-
-        return mRootView;
     }
 
     @OnClick(R.id.exchange_order_item) void exchangeOrder(){
         ARouter.getInstance().build(RouterConstant.CommonModule.WEBVIEW)
                 .withString(WebActivity.URL,"https://bbex.io/")
                 .navigation();
+
     }
 }

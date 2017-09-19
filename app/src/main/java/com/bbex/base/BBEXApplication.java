@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jfz.context.BaseApp;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * author : zhangxuebing
@@ -15,6 +16,7 @@ public class BBEXApplication extends Application{
     public void onCreate() {
         super.onCreate();
         BaseApp.instance = this;
+        CrashReport.initCrashReport(getApplicationContext(), "94ba3d1ffd", false);
         ARouter.init(this);
     }
 }

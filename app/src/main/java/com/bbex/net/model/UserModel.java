@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class UserModel {
+    public static String SP_USER = "UserModel";
     /**
      * code : 0
      * msg : ok
