@@ -10,11 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/toolbar"
-            android:visibility="gone"
-        />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -30,7 +25,9 @@
             android:background="#ffffff"
             android:orientation="vertical">
 
-            <include layout="@layout/fragment_main_me_exchange_order_item"/>
+            <include
+                android:id="@+id/exchange_order_item"
+                layout="@layout/fragment_main_me_exchange_order_item"/>
 
             <include layout="@layout/app_common_line"/>
 

@@ -45,7 +45,6 @@ public class WebFragment extends BaseFragment{
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                Log.i("huahua","url =" + url);
                 view.loadUrl(url);
                 return true;
             }

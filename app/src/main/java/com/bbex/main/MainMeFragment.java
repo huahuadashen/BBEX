@@ -12,13 +12,16 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bbex.R;
 import com.bbex.R2;
 import com.bbex.base.BaseFragment;
+import com.bbex.config.RouterConstant;
 import com.bbex.net.model.UserModel;
 import com.bbex.net.retrofit.RetrofitUtils;
+import com.bbex.webview.WebActivity;
 import com.jfz.imageloader.ImageLoaderOptions;
 import com.jfz.imageloader.JfzImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.ResourceObserver;
@@ -72,9 +75,6 @@ public class MainMeFragment extends BaseFragment{
             mUserLoginState.setText(R.string.login);
         }
 
-
-        ARouter.getInstance().build("/test/activity").navigation();
-
         RetrofitUtils.getCommonServer()
                 .getUserInfo()
 //                .compose(new DefaultTransformer<UserModel>())
@@ -103,5 +103,11 @@ public class MainMeFragment extends BaseFragment{
                 });
 
         return mRootView;
+    }
+
+    @OnClick(R.id.exchange_order_item) void exchangeOrder(){
+        ARouter.getInstance().build(RouterConstant.CommonModule.WEBVIEW)
+                .withString(WebActivity.URL,"https://bbex.io/")
+                .navigation();
     }
 }
