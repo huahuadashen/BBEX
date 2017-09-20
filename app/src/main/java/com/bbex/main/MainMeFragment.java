@@ -19,13 +19,13 @@ import com.bbex.storage.SpUtil;
 import com.bbex.webview.WebActivity;
 import com.jfz.imageloader.ImageLoaderOptions;
 import com.jfz.imageloader.JfzImageView;
+import com.jfz.net.retrofit.rx.SimpleObserver;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.ResourceObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -84,12 +84,11 @@ public class MainMeFragment extends BaseFragment{
     private void getUserInfo(){
         RetrofitUtils.getCommonServer()
                 .getUserInfo()
-//                .compose(new DefaultTransformer<UserModel>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResourceObserver<UserModel>() {
+                .subscribe(new SimpleObserver<UserModel>() {
                     @Override
-                    public void onNext(@NonNull UserModel userModel) {
+                    protected void onSuccess(@NonNull UserModel userModel) {
                         Log.i("huahua","userModel =" + userModel.data.name);
 
                         mUserName.setText(userModel.data.name);
@@ -101,13 +100,8 @@ public class MainMeFragment extends BaseFragment{
                     }
 
                     @Override
-                    public void onError(@NonNull Throwable e) {
+                    protected void onFail(@NonNull Throwable e) {
                         Log.i("huahua","e =" + e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
                     }
                 });
     }

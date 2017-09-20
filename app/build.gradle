@@ -39,6 +39,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.jakewharton:butterknife:8.8.1'
+    compile 'com.just.agentweb:agentweb:2.0.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile project(':BaseLibrary')
     compile 'com.alibaba:arouter-api:1.1.0'

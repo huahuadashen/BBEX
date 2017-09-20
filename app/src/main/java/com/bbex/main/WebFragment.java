@@ -2,16 +2,20 @@ package com.bbex.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.bbex.R;
+import com.bbex.R2;
 import com.bbex.base.BaseFragment;
+import com.just.library.AgentWeb;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.bbex.main.MainActivity.sTab;
 
@@ -21,8 +25,9 @@ import static com.bbex.main.MainActivity.sTab;
  */
 
 public class WebFragment extends BaseFragment{
-    private View mRootView;
-    private WebView mWebView;
+    protected AgentWeb mAgentWeb;
+    @BindView(R2.id.container)
+    LinearLayout mLinearLayout;
 
 
     public static WebFragment newInstance() {
@@ -35,29 +40,22 @@ public class WebFragment extends BaseFragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View  mRootView = inflater.inflate(R.layout.fragment_web, container, false);
+        ButterKnife.bind(this,mRootView);
 
-         mRootView = inflater.inflate(R.layout.fragment_web, container, false);
+        mAgentWeb = AgentWeb.with(this)//传入Activity or Fragment
+                .setAgentWebParent(mLinearLayout, new LinearLayout.LayoutParams(-1, -1))//传入AgentWeb 的父控件 ，如果父控件为 RelativeLayout ， 那么第二参数需要传入 RelativeLayout.LayoutParams ,第一个参数和第二个参数应该对应。
+                .useDefaultIndicator()// 使用默认进度条
+                .createAgentWeb()
+                .ready()
+                .go("https://bbex.io/");
 
-        mWebView = (WebView) mRootView.findViewById(R.id.webview);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("https://bbex.io/");
+        WebView webView=mAgentWeb.getWebCreator().get();
 
-        mWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-
-        });
-
-        mWebView.setOnKeyListener(new View.OnKeyListener() {
+        webView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (i == KeyEvent.KEYCODE_BACK
-                        && mWebView.canGoBack()
-                        && sTab == 0) {
-                    mWebView.goBack();
+                if (sTab == 0 && mAgentWeb.handleKeyEvent(i, keyEvent)) {
                     return true;
                 }
                 return false;
