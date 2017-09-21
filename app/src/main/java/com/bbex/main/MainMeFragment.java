@@ -106,9 +106,16 @@ public class MainMeFragment extends BaseFragment{
                 });
     }
 
-    @OnClick(R.id.exchange_order_item) void exchangeOrder(){
+    @OnClick(R.id.exchange_order) void exchangeOrder(){
         ARouter.getInstance().build(RouterConstant.CommonModule.WEBVIEW)
                 .withString(WebActivity.URL,"https://bbex.io/")
+                .navigation();
+
+    }
+
+    @OnClick(R.id.common_problem) void commonroblem(){
+        ARouter.getInstance().build(RouterConstant.CommonModule.WEBVIEW)
+                .withString(WebActivity.URL,"https://bbex.io/faq")
                 .navigation();
 
     }

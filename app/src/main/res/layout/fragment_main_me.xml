@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/exchange_order_item"
+                android:id="@+id/exchange_order"
                 layout="@layout/fragment_main_me_exchange_order_item"/>
 
             <include layout="@layout/app_common_line"/>
@@ -39,7 +39,9 @@
 
             <include layout="@layout/app_common_line"/>
 
-            <include layout="@layout/fragment_main_me_common_problem_item"/>
+            <include
+                android:id="@+id/common_problem"
+                layout="@layout/fragment_main_me_common_problem_item"/>
 
             <include layout="@layout/app_common_line_6dp"/>
 

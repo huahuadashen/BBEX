@@ -65,4 +65,23 @@ public class WebFragment extends BaseFragment{
         return mRootView;
     }
 
+
+    @Override
+    public void onPause() {
+        mAgentWeb.getWebLifeCycle().onPause();
+        super.onPause();
+
+    }
+
+    @Override
+    public void onResume() {
+        mAgentWeb.getWebLifeCycle().onResume();
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroyView() {
+        mAgentWeb.getWebLifeCycle().onDestroy();
+        super.onDestroyView();
+    }
 }

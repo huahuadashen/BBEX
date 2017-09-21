@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
-        android:name=".base.BBEXApplication"
+        android:name="com.bbex.base.BBEXApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.bbex.main.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".webview.WebActivity"/>
+        <activity android:name="com.bbex.webview.WebActivity"/>
     </application>
 
 </manifest>

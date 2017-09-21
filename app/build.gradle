@@ -18,9 +18,23 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+        signingConfigs {
+            release {
+                storeFile file("bbex.jks")
+                storePassword "bbex2017"
+                keyAlias "bbex"
+                keyPassword "bbex2017"
+            }
+        }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

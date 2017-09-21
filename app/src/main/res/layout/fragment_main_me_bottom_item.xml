@@ -39,7 +39,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:background="@mipmap/right_arrow_icon"/>
+        android:background="@drawable/right_arrow_icon"/>
 
     <TextView
         android:id="@+id/user_bottom_desc"
